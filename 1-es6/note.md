@@ -450,7 +450,7 @@ function checkscope() {
   }
   return f();
 }
-checkscope(); // local
+checkscope();
 ```
 
 ```js
@@ -462,7 +462,7 @@ function checkscope() {
   }
   return f;
 }
-checkscope()(); // local
+checkscope()();
 ```
 
 ```js
