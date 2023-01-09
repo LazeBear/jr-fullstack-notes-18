@@ -182,16 +182,15 @@ bar(foo); // 1
 
 // (function () {})()
 
+// function foo() {
+//     function bar() {
+//         return 1;
+//     }
+//     return bar;
+// }
 
-function foo() {
-    function bar() {
-        return 1;
-    }
-    return bar;
-}
-
-const a = foo();
-a() = bar() => 1
+// const a = foo();
+// a() = bar() => 1
 // foo()() => 1
 
 // bar -> 0x0001  (reference)
@@ -200,9 +199,177 @@ a() = bar() => 1
 
 // a()
 
+// [1,2,3,4,5]
+// splice()
+// unshift();
+
+const calendar = {
+  currentDay: 6,
+  nextDay() {
+    // this -> calendar
+    const foo = () => {
+      // this -> window
+      setTimeout(() => {
+        this.currentDay++;
+        console.log(this.currentDay);
+      });
+    };
+    foo();
+  },
+};
+calendar.nextDay();
+
+// const calendar = {
+//     currentDay: 6,
+//     nextDay() {
+//       setTimeout(() => {
+//         this.currentDay++;
+//         console.log(this.currentDay);
+//       });
+//     },
+//   };
+//   calendar.nextDay();
+
+//   const calendar = {
+//     currentDay: 6,
+//     nextDay: function () {
+//       setTimeout(() => {
+//         this.currentDay++;
+//         console.log(this.currentDay);
+//       });
+//     },
+//   };
+// //   calendar.nextDay();
+
+// const object = {
+//   who: 'World',
+
+//   greet() {
+//     return `Hello, ${this.who}!`;
+//   },
+
+//   farewell: () => {
+//     return `Goodbye, ${this.who}!`;
+//   },
+// };
+
+// const object = {};
+// object.who = 'mason';
+// object.greet = function(){};
+// object.farewell = () => {};
+
+// const object = {
+//   who: 'mason',
+//   cb() {
+//     console.log(`Hello, ${this.who}!`);
+//   },
+// };
+
+// function foo(cb) {
+//   cb();
+// }
+
+// const bar = object.cb;
+// // const bar = function(){}
+// bar(); // undefined
+
+// foo(object.cb());
+
+// const object = {
+//     who: 'mason',
+//     cb() {
+//         console.log(`Hello, ${this.who}!`);
+//     },
+// };
+
+// function foo(cb) {
+//     cb();
+// }
+
+// foo(object.cb); // ??
+// object.cb(); // ??
+
+// // memory
+// [
+//     object -> referece -> {who: 'mason', cb: r1 -> function },
+//     foo -> referece -> function
+// ]
+
+// object.cb === cb (referece equal)
+// foo(cb) {
+//     cb();
+// }
+
+const object = {
+  message: 'Hello, World!',
+
+  getMessage() {
+    const message = 'Hello, Earth!';
+    return this.message;
+  },
+};
+
+const bar = object.getMessage;
+bar();
+
+//   set -> 去重
+
+// prototype, prototype chain
+
+// instance 实例
+
+// process / thread
+// 进程 / 线程
+
+// 同步 / 异步
+// 阻塞 / 非阻塞
+// block / non-block
+
+// promise
+
+function foo() {
+  console.log('foo'); // [1004ms]
+}
+function runFor1Sec() {
+  // a for loop or while loop or a heavy computing logic which requires 1 sec to finish
+}
+// [1ms]
+setTimeout(foo, 1000); // [2ms]
+// <-- foo is ready -->
+runFor1Sec(); // [1002ms]
+console.log('hello'); // [1003ms]
+
+/**
+ * foo -> function (reference)
+ * runFor1Sec -> function (reference)
+ */
+
+/**
+ * Call stack
+ * [    ]
+ * [    ]
+ * [    ]
+ * [ GEC]
+ */
+
+// event loop
+
+/**
+ * macrotask queue
+ * Callback queue
+ * [100 events]
+ */
+
+/**
+ * microtask queue
+ * Promise queue
+ * [1 promise]
+ */
+
+/**
+ * Web API
+ * 
+ */
 
 
-
-[1,2,3,4,5]
-splice()
-unshift();
+// event driven
