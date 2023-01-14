@@ -127,3 +127,10 @@ xjijfiwejiz -> {"error": "error"}
 
 {100 property}
 {10}
+
+sequence diagram
+
+fetch
+axios
+
+XMLHttpRequest
