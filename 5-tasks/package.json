@@ -1,14 +1,10 @@
 {
-  "name": "4-express",
+  "name": "5-tasks",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "",
-    "test": "",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
