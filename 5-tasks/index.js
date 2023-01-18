@@ -2,6 +2,10 @@ const express = require('express');
 
 const app = express();
 
+const tasks = [];
+let id = 1;
+// uuid, nanoid
+
 app.use(cors);
 
 app.get('/tasks', (req, res) => {
