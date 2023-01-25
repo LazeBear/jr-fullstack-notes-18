@@ -1,0 +1,51 @@
+// root level/ directory/ folder
+
+-- package.json
+-- package-lock.json
+-- node_modules
+-- .env (environment variable file)
+-- config (another type of environment variable management)
+-- other configuration files
+-- src
+  |-- index.js 入口文件
+  |-- server.js / app.js (有可能是入口文件)
+  |-- routes (我们server所支持的资源路径)
+    |-- task（s）.js
+    |-- user（s）.js
+    |-- ...
+  |-- controllers (负责逻辑处理)
+    |-- task（s）.js
+    |-- user（s）.js
+    |-- ...
+  |-- models (数据模型) (interact with DB)
+    |-- task.js (Task.js)
+    |-- user.js
+    |-- ...
+  |-- middleware
+    |-- cors.js
+    |-- errorMiddleware
+      |-- xxxErrorHandler.js
+  |-- utils (utilities)
+    |-- helper functions
+
+routes 和 controllers 合并
+services
+
+
+resource/domain per level
+
+-- src
+  -- user
+    -- user.model.js
+    -- user.controller.js
+    -- utils
+    -- user.service.js
+  -- task
+    -- ...
+
+nest.js
+
+framework cli tool -> boilerplate
+create-react-app -> react application boilerplate
+
+v = view = html
