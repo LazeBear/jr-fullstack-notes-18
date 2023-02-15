@@ -1,0 +1,175 @@
+mongodb compass -> GUI
+mongo
+mongosh
+
+no-SQL
+not only SQL
+SQL
+
+SQL
+postgresQL
+mySQL
+SQLite
+
+no-SQL
+mongodb -> document-oriented
+redis -> key-value
+neo4j -> graph-oriented
+cassandra -> column-family
+
+增删改查
+CRUD
+Create
+Read
+Update
+Delete
+
+operator
+nested object - nested document
+
+student: address -> 1 : 1
+address: student -> 1 : 1
+
+student: address -> 1 : M
+address: studnet -> 1 : 1
+
+student: address -> 1 : M
+address: studnet -> 1 : N
+M:N
+
+students
+uniqueness -> unique index
+[
+  {
+    _id: S1,
+    name: "xx",
+    addresses: [
+      {
+        _id: "A1",
+        city: "melbourne",
+        postcode: 4000
+      },
+      {
+        _id: "A2",
+        city: "sydney",
+        postcode: 2000
+      }
+    ]
+  },
+  {
+    _id: S2,
+    name: "yy",
+    addresses: [
+      {
+        _id: "A1",
+        city: "melbourne",
+        postcode: 4000
+      },
+      {
+         _id: "A2",
+        city: "sydney",
+        postcode: 2000
+      }
+    ]
+  }
+]
+
+
+denormalization
+students
+[
+  {
+    _id: S1,
+    name: "xx",
+    addresses: [
+      {
+        _id: A1,
+        city: "melbourne"
+      },
+      {
+        _id: A2,
+        city: "sydney"
+      }
+    ]
+  },
+  {
+    _id: S2,
+    name: "yy",
+    addresses: [
+      {
+        _id: A1,
+        city: "melbourne"
+      },
+      {
+        _id: A2,
+        city: "sydney"
+      }
+    ]
+  }
+]
+addresses
+[
+  {
+    _id: "A1",
+    city: "melbourne",
+    postcode: 4000
+  },
+  {
+      _id: "A2",
+    city: "sydney",
+    postcode: 2000
+  }
+]
+
+trade-offs
+design document
+1,2,3
+
+
+Sensors (weather station - log every 5 min)
+Logs
+
+
+Sensors
+[
+  // document has size limit (mongodb 16mb) (amazon - dynamodb 16kb)
+  {
+    _id: S1,
+  }
+]
+
+logs
+[
+  {
+    _id: L1,
+    sensor: S1
+  }
+]
+
+
+10000
+[
+  {
+    10000
+    100
+  },
+  {
+    100
+    10
+  },
+  {
+    10
+    10
+  },
+]
+10
+
+replica
+
+race condition
+
+
+BSON binary JSON
+
+mongodump
+mongorestore
