@@ -1,0 +1,10 @@
+CMS (content management system)
+blog
+
+user (username, password)
+teacher (firstName, lastName, email, courses) -
+course (name, code, description, teachers, students)
+student (firstName, lastName, email, courses)
+student m:n course
+
+ERD (entity relational diagram)

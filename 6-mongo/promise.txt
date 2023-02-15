@@ -1,0 +1,89 @@
+function foo() {
+  console.log(1);
+  return new Promise(resolve => {
+    console.log(2);
+    resolve(3);
+  });
+}
+foo();
+
+---
+
+
+async function foo() {
+  console.log(1);
+  await bar();
+  console.log(2);
+}
+
+async function bar() {
+  console.log(3);
+  const a = await 4;
+  console.log(a);
+}
+
+console.log(5);
+foo();
+console.log(6);
+
+syntax sugar
+
+function foo() {
+  console.log(1);
+  bar().then(()=>{
+    console.log(2)
+  })
+}
+
+function bar() {
+  console.log(3);
+  return Promise.resolve(4).then((a) =>{
+    console.log(a);
+  })
+}
+
+function foo() {
+  console.log(1);
+  console.log(3);
+  return Promise.resolve(4).then((a) =>{
+    console.log(a);
+  }).then(()=>{
+    console.log(2)
+  })
+}
+
+console.log(5);
+foo();
+console.log(6);
+
+5, 1, 3, 6, 4, 2
+
+callback queue - macrotask queue
+promise queue - microtask queue
+
+promise
+pending, resolved, rejected
+p - resolved
+p - rejected
+
+
+new Promise((res, rej)={
+  res()
+}).catch().then(()=>{
+
+}).then((undefined)=>{
+
+})
+
+function request () {
+  fetch().then().catch();
+}
+const req1 = request()
+const req2 = request()
+
+await Promise.all([req1, req2]);
+
+Promise.allSettled()
+
+Promise.race()
+

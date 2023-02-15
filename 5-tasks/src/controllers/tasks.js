@@ -39,6 +39,8 @@ const getTaskById = (req, res) => {
     return;
   }
   res.json(task);
+  return;
+  // return res.json(task)
 };
 
 const updateTaskById = (req, res) => {

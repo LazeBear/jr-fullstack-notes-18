@@ -173,3 +173,32 @@ BSON binary JSON
 
 mongodump
 mongorestore
+
+debug mode
+
+
+
+Common ORM
+SQL sequalize
+SQL/MongoDB prisma (next.js)
+
+
+db.collections.query()
+Model.query()
+
+mongoose.Model('xxxx')
+cyclic dependency
+
+db.collections.find({_id: xxxx})
+Model.findById(xxxx);
+validation
+virtual property
+
+mongodb document -> JSON -> mongoose document -> take advantage -> JSON -> client
+mongoose - mongo client
+
+User.js
+user.js
+
+
+class
