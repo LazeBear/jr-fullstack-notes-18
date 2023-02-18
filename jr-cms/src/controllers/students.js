@@ -1,6 +1,42 @@
 const StudentModel = require('../models/student');
+const CourseModel = require('../models/course');
+
+/**
+ * 1. callback
+ *  StudentModel.find((error, res)=>{
+ *    if (error) {
+ *      // check error type
+ *      res.status(500).json({});
+ *      return;
+ *    }
+ *    // handle response
+ * })
+ *
+ * 2. promise
+ *    CourseModel.find().then((res) => {
+ *      // handle response
+ *    }).catch(e => {
+ *      // check error type
+ *      res.status(500).json({});
+ *      return;
+ *    })
+ *
+ * 3. try and catch
+ *  try {
+ *    await CourseModel.find();
+ *    await xxxx
+ *    await yyyy
+ *  } catch(e) {
+ *    // check error type
+ *    res.status(500).json({});
+ *    return;
+ *  }
+ *
+ *  express-async-errors
+ */
 
 const addStudent = async (req, res) => {
+  // try{} catch(e){}
   const { firstName, lastName, email } = req.body;
   // data validation
   // StudentModel.create({firstName, lastName, email})
@@ -18,6 +54,7 @@ const addStudent = async (req, res) => {
   res.status(201).json(student);
 };
 const getAllStudents = async (req, res) => {
+  // try{} catch(e){}
   // db.students.find()
   // find -> Query
   // query.find => Query, query.sort => Query, query.filter => Query
@@ -30,9 +67,14 @@ const getAllStudents = async (req, res) => {
 };
 const getStudentById = async (req, res) => {
   const { id } = req.params;
-  const student = await StudentModel.findById(id).exec();
+  // let query = StudentModel.findById(id);
+  // query = query.populate();
+  // await query.exec();
+  const student = await StudentModel.findById(id).populate('courses').exec();
   if (!student) {
     res.status(404).json({ error: 'student not found' });
+    // class DocumentNotFoundError extends Error {}
+    // next(new DocumentNotFoundError('student'))
     return;
   }
   res.json(student);
@@ -58,6 +100,68 @@ const deleteStudentById = async (req, res) => {
     res.status(404).json({ error: 'student not found' });
     return;
   }
+  await CourseModel.updateMany(
+    {
+      students: id,
+    },
+    {
+      $pull: {
+        students: id,
+      },
+    }
+  ).exec();
+  res.sendStatus(204);
+};
+
+// '/:studentId/courses/:courseId'
+const addStudentToCourse = async (req, res) => {
+  const { studentId, courseId } = req.params;
+  const student = await StudentModel.findById(studentId).exec();
+  const course = await CourseModel.findById(courseId).exec();
+
+  if (!student || !course) {
+    res.status(404).json({ error: 'student or course not found' });
+    return;
+  }
+
+  // trasaction
+  // ACID
+
+  // check if relationship already exists
+  course.students.addToSet(studentId);
+  // student.courses.addToSet(courseId);
+  await course.save();
+  // await student.save();
+  const updatedStudent = await StudentModel.findByIdAndUpdate(
+    studentId,
+    { $addToSet: { courses: courseId } },
+    { new: true }
+  ).exec();
+  res.json(updatedStudent);
+};
+
+// DELETE
+const removeStudentFromCourse = async (req, res) => {
+  const { studentId, courseId } = req.params;
+  const student = await StudentModel.findById(studentId).exec();
+  const course = await CourseModel.findById(courseId).exec();
+
+  if (!student || !course) {
+    res.status(404).json({ error: 'student or course not found' });
+    return;
+  }
+  await StudentModel.findByIdAndUpdate(studentId, {
+    $pull: {
+      courses: courseId,
+    },
+  }).exec();
+
+  await CourseModel.findByIdAndUpdate(courseId, {
+    $pull: {
+      students: studentId,
+    },
+  }).exec();
+
   res.sendStatus(204);
 };
 
@@ -67,6 +171,8 @@ module.exports = {
   getStudentById,
   updateStudentById,
   deleteStudentById,
+  addStudentToCourse,
+  removeStudentFromCourse,
 };
 
 // exports.xxx = () => {}

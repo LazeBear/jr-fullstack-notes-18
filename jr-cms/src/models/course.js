@@ -7,6 +7,16 @@ module.exports = model(
     name: { type: String, required: true },
     // code: {type: String, unique: true },
     description: { type: String, default: 'this is a description' },
+    // student: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Student',
+    // },
+    students: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Student',
+      },
+    ],
   })
 );
 
