@@ -8,3 +8,9 @@ student (firstName, lastName, email, courses)
 student m:n course
 
 ERD (entity relational diagram)
+
+
+[TICKET-1]
+TICKET-1-create-user-model
+mason-ticket-1-create-user-model
+origin/mason-ticket-1
