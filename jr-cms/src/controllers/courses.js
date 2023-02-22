@@ -45,10 +45,10 @@ const getCourseById = async (req, res) => {
 };
 const updateCourseById = async (req, res) => {
   const { id } = req.params;
-  const { code, description, name } = req.body;
+  const { description, name } = req.body;
   const course = await CourseModel.findByIdAndUpdate(
     id,
-    { code, description, name },
+    { description, name },
     { new: true }
   ).exec();
   if (!course) {

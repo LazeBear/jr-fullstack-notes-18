@@ -14,3 +14,53 @@ ERD (entity relational diagram)
 TICKET-1-create-user-model
 mason-ticket-1-create-user-model
 origin/mason-ticket-1
+
+
+加密    -》 解密
+encrypt -》 decrypt
+x -> X -> x
+哈希 hash
+x -> Y !-> x
+
+
+hash + salt
+x1 + salt1 -> Y1+salt1
+x1 + salt2 -> Y2+salt2
+
+rawPassword -> rawPasswordsalt1 -> salt1Y1 -> user.password
+{username, password}
+User.findOne({username}).password -> salt1Y1
+
+x1, x2, x1
+[salt1Y1, salt2Y2]
+
+x1 + salt1 -> Y1+salt1
+
+bcrypt
+
+
+1password
+
+// refresh token 30d
+// access token 15m
+
+// SSO single sign on
+// OAuth 2.0, OpenID connect
+// Auth0
+
+// oidc
+
+// /auth/accessToken   {refreshToken:xxx}
+// FE refresh token every 14m, on request failed
+
+myWebsite
+user -> "login with google" -> open new window (google manage this page) -> user enter google username and password to login ->
+google authenticate this user -> user grant permission to share personal info ->
+redirect user back to our myWebsite page WITH token ->
+myWebsite send this token to myWebsite's backend -> send request with this token to google server ->
+google return user personal info (defined in token) -> myWebsite generate another access token
+
+
+
+aws
+mongodb atlas

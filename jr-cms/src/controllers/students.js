@@ -128,13 +128,13 @@ const addStudentToCourse = async (req, res) => {
   // ACID
 
   // check if relationship already exists
-  course.students.addToSet(studentId);
+  course.students.addToSet(student._id);
   // student.courses.addToSet(courseId);
   await course.save();
   // await student.save();
   const updatedStudent = await StudentModel.findByIdAndUpdate(
-    studentId,
-    { $addToSet: { courses: courseId } },
+    student._id,
+    { $addToSet: { courses: course._id } },
     { new: true }
   ).exec();
   res.json(updatedStudent);
@@ -152,13 +152,13 @@ const removeStudentFromCourse = async (req, res) => {
   }
   await StudentModel.findByIdAndUpdate(studentId, {
     $pull: {
-      courses: courseId,
+      courses: course._id,
     },
   }).exec();
 
   await CourseModel.findByIdAndUpdate(courseId, {
     $pull: {
-      students: studentId,
+      students: student._id,
     },
   }).exec();
 

@@ -1,0 +1,41 @@
+unit test - jest, jasmine, mocha
+integration test - jest, supertest, selenium
+end to end test (E2E) - selenium, cypress
+
+
+mock
+function foo(bar) {
+  xxxxx
+  bar()
+}
+dependencies
+
+const bar = require('./bar');
+function foo() {
+  bar()
+}
+
+compare expected value with actual value
+
+black box testing - white box testing
+
+
+/__tests__/xxxxx.tests.js
+/__tests__/unit/
+/__tests__/integration/
+
+
+/courses/course.controller
+/courses/course.model
+...
+/courses/tests/
+
+xxx.test.js
+/__tests__/*
+
+tdd - test driven development
+
+test coverage
+
+error case
+success case

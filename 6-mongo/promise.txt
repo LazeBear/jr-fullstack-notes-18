@@ -87,3 +87,16 @@ Promise.allSettled()
 
 Promise.race()
 
+
+
+new Promise((res, rej)={
+  res()
+}).then( (resolve)=>{}, (reject)=>{} )=>{
+
+}).catch().then((undefined)=>{
+
+}).catch().then((undefined)=>{
+
+}).then((undefined)=>{
+
+}).catch()
