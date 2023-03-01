@@ -1,0 +1,69 @@
+虚拟机
+hypervisor
+容器
+虚拟化技术
+
+vagrant
+
+environment, how to build
+dockerfile
+
+app -> build -> image
+image 镜像
+
+container
+
+docker hub
+镜像仓库
+
+network
+docker compose (kubernete)
+
+port forwarding
+localhost:3000 -> container:3000
+
+host 宿主机
+
+base image
+
+运行一个container （启动一个新的）
+--rm 当我关闭这个container的时候 删除这个container
+-p port forwarding host:container
+mongo mongodb image name
+image:tag
+docker run --rm -p 27017:27017 mongo
+
+
+docker build -t {image:tag} .
+
+docker ps
+
+docker start/stop {container-name/container-id}
+
+
+docker run --rm -p 27017:27017 --name {container-name} {image:tag}
+
+docker exec -it --name {container-name} {command}
+(interactive tty)
+command
+sh
+/bin/sh
+/bin/bash
+npm run dev
+
+
+
+npm install --production
+
+
+docker compose up --build
+
+docker logs -f {container-name}
+
+docker compose down
+
+
+hand over to devops
+1. build images locally -> jr-cms-18:1.0
+2. upload this image to image repository
+3. prepare relase/deploy template/file -> list out image with tag (include version)

@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 const unknownError = require('./middleware/error/unknownError');
 const validationError = require('./middleware/error/validationError');
 require('express-async-errors');
@@ -6,6 +7,8 @@ const errorHandler = require('./middleware/errorHandler');
 const router = require('./routes');
 
 const app = express();
+
+app.use(morgan('dev'));
 
 app.use(express.json());
 

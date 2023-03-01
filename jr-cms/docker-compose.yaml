@@ -1,0 +1,25 @@
+version: '3'
+services:
+  server:
+    # image: example.com/imageName:1.1
+    # build: .
+    image: node:16
+    # volume mount
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      - JWT_KEY=secret
+      - CONNECTION_STRING=mongodb://mongo/jrCms18
+    ports:
+      - 3000:3000
+    container_name: jr-cms-18_server
+    depends_on:
+      - mongo
+    command: sh -c "cd /app && npm i && npm run dev"
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    container_name: jr-cms-18_mongo

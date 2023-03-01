@@ -1,0 +1,13 @@
+FROM node:16
+# comment
+WORKDIR /app
+#   source destination
+COPY . .
+
+# ENV key=value
+
+RUN npm i --production
+
+EXPOSE 3000
+
+CMD [ "npm", "start" ]

@@ -1,0 +1,11 @@
+FROM node:16
+# comment
+WORKDIR /app
+#   source destination
+COPY . .
+
+RUN npm i --production
+
+EXPOSE 3000
+
+CMD [ "npm", "start" ]
