@@ -31,6 +31,12 @@ const addCourse = async (req, res) => {
   res.status(201).json(course);
 };
 const getAllCourses = async (req, res) => {
+  // req.query = {page, pageSize, sort}
+  // limit, skip
+  // limit = pageSize = 100
+  // skip 1 [0-100] = skip 0,  2[101-200] = skip 100
+  // sort
+
   const courses = await CourseModel.find().exec();
   res.json(courses);
 };
